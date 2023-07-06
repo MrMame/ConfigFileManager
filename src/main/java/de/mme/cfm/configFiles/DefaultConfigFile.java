@@ -2,16 +2,21 @@ package de.mme.cfm.configFiles;
 
 import de.mme.cfm.configFiles.ConfigFile;
 
-import java.util.AbstractMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DefaultConfigFile implements ConfigFile {
 
-    private Set<AbstractMap.SimpleEntry> keyValuePairs = new HashSet<>();
+    private Map<String,String> keyValuePairs = new HashMap<>();
 
     @Override
-    public boolean addKeyValue(AbstractMap.SimpleEntry<String, String> kvEntry) {
-        return keyValuePairs.add(kvEntry);
+    public void addKeyValue(String key, String value){
+        keyValuePairs.put(key, value);
+    }
+
+    @Override
+    public  Map<String,String> getKeyValues() {
+        // Create a copy for returning
+        Map<String,String> retKVs = new HashMap<>(keyValuePairs);
+        return retKVs;
     }
 }
