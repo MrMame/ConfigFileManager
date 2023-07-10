@@ -37,14 +37,14 @@ public class ConfigFileManager {
         if (!Files.exists(sourceFile)) {
             throw new FileNotFoundException("Config file not found " + Filename);
         } else {
-            ConfigFile cf =  createConfigFile(sourceFile);
+            ConfigFile cf =  readConfigFile(sourceFile);
             configFiles.put(Filename,cf);
             allKV.putAll(cf.getKeyValues());
         }
     }
 
 
-    private ConfigFile createConfigFile(Path sourceFile) throws IOException {
+    private ConfigFile readConfigFile(Path sourceFile) throws IOException {
 
         ConfigFile cf = new DefaultConfigFile();
 
