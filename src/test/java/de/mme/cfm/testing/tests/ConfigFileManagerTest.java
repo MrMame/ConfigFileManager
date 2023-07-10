@@ -1,3 +1,5 @@
+package de.mme.cfm.testing.tests;
+
 import de.mme.cfm.ConfigFileManager;
 import org.junit.jupiter.api.Test;
 
