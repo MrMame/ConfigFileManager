@@ -2,7 +2,6 @@ package de.mme.cfm;
 
 import de.mme.cfm.configFiles.ConfigFile;
 import de.mme.cfm.configFiles.DefaultConfigFile;
-import de.mme.cfm.configFiles.InvalidFileFormatException;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -15,7 +14,7 @@ import java.util.stream.Stream;
 public class ConfigFileManager {
 
     private static final String CONFIGFILE_COMMENTS_CHAR = "#";
-private static final String CONFIGFILE_KEYVALUE_SEPERATOR ="=";
+    private static final String CONFIGFILE_KEYVALUE_SEPERATOR ="=";
 
     private Map<String, ConfigFile> configFiles = new HashMap<>();
     private Map<String,String> allKV = new HashMap<>();
