@@ -66,7 +66,7 @@ try {
 } catch(FileNotFoundException e){
     // If file is not existing    
 } catch (IOException e) {
-    // Generall problems, e.g. invalid user privileges
+    // General problems, e.g. invalid user privileges
 } 
 
 String myKey = "MySetting";
