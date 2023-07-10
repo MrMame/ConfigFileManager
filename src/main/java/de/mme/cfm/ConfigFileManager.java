@@ -43,6 +43,26 @@ public class ConfigFileManager {
         }
     }
 
+    /**
+     * Crate a new config file containing the key-value pairs from kvValues
+     * @param Filename  Filename of the new ConfigFile
+     * @param kvValues  Key-Value Map, containing the key and values to strore inside the ConfigFile
+     */
+    public void createConfigFile(String Filename,Map<String,String> kvValues) throws IOException {
+
+         try(FileWriter fw = new FileWriter(Filename);){
+             kvValues.entrySet().forEach(eSet->{
+                 try {
+                     // todo - Line 57 is not processed ??!
+                     fw.write(eSet.getKey() + CONFIGFILE_KEYVALUE_SEPERATOR + eSet.getValue());
+                 } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
+             });
+         }
+
+    }
+
 
     private ConfigFile readConfigFile(Path sourceFile) throws IOException {
 
