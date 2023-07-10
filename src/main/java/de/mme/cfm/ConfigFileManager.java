@@ -6,6 +6,7 @@ import de.mme.cfm.configFiles.InvalidFileFormatException;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -21,6 +22,7 @@ private static final String CONFIGFILE_KEYVALUE_SEPERATOR ="=";
 
 
     public String getValue(String key){
+        if(key.isEmpty())return null;
         return allKV.get(key);
     }
 
@@ -30,11 +32,11 @@ private static final String CONFIGFILE_KEYVALUE_SEPERATOR ="=";
      * @throws FileNotFoundException If Filename is not existing
      * @throws IOException If file cannot be accessed
      */
-    public void loadFile(String Filename)throws FileNotFoundException, IOException{
+    public void loadFile(String Filename)throws FileNotFoundException, IOException, InvalidPathException {
         Path sourceFile = Paths.get(Filename);
         // Check if File exists
         if (!Files.exists(sourceFile)) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException("Config file not found " + Filename);
         } else {
             ConfigFile cf =  createConfigFile(sourceFile);
             configFiles.put(Filename,cf);
