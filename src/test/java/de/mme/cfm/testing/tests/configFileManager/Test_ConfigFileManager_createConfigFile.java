@@ -35,6 +35,45 @@ public class Test_ConfigFileManager_createConfigFile {
             fail("Test was not able to create testfile !");
         }
 
+
+        // ASSERT - Check if KVvalues Map using to create new Config file is matching the kvValues read.
+        ConfigFileManager tcfm = new ConfigFileManager();
+        try {
+            tcfm.loadFile(testfilename);
+        } catch (IOException e) {
+            fail("Error while loading config file with filemanager \n" + e.toString());
+        }
+        boolean isKvMatching;
+        isKvMatching = kvValues.entrySet().stream().allMatch(entry->
+        {
+            String fileValue = tcfm.getValue(entry.getKey());
+            String entryValue = entry.getValue();
+            return fileValue.equals(entryValue);
+        });
+        assertEquals(true,isKvMatching);
+
+
+        // Remove Testfile
+        ConfigFiles.RemoveFile(testfilename);
+
+    }
+
+    @Test
+    void CreateNewConfigFileWithEmptyMap_hasZeroSize() {
+
+        // ARRANGE
+        String testfilename = "CreateConfigFile.txt";
+       Map<String,String> kvValues = new HashMap<>();
+
+        // ACT
+        // Create new Configfile with kv Values
+        ConfigFileManager cfm = new ConfigFileManager();
+        try {
+            cfm.createConfigFile(testfilename,kvValues);
+        } catch (IOException e) {
+            fail("Test was not able to create testfile !");
+        }
+
         // Read Config file an get  values
         ConfigFileManager tcfm = new ConfigFileManager();
         try {
@@ -44,16 +83,9 @@ public class Test_ConfigFileManager_createConfigFile {
         }
 
 
-        // ASSERT - Check if KVvalues Map using to create new Config file is matching the kvValues read.
-        boolean isKvMatching;
-        isKvMatching = kvValues.entrySet().stream().allMatch(entry->
-        {
-            String fileValue = tcfm.getValue(entry.getKey());
-            String entryValue = entry.getValue();
-            System.out.println("fileValue="+fileValue + " entryValue="+entryValue);
-            return fileValue.equals(entryValue);
-        });
-        assertEquals(true,isKvMatching);
+        // ASSERT
+        Integer fileEntryCount = tcfm.size();
+        assertEquals(0,fileEntryCount);
 
 
         // Remove Testfile
