@@ -1,4 +1,4 @@
-package de.mme.cfm.testing.tests;
+package de.mme.cfm.testing.tests.configFileManager;
 
 import de.mme.cfm.ConfigFileManager;
 import de.mme.cfm.testing.utils.ConfigFiles;
@@ -8,13 +8,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ConfigFileManagerTest {
+public class Test_ConfigFileManager_loadFile {
 
     @Test
     void ReadEmptyConfigFile_returnsNullOnEachKeyRequest() {
