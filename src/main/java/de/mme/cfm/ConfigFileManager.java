@@ -53,14 +53,18 @@ public class ConfigFileManager {
          try(FileWriter fw = new FileWriter(Filename);){
              kvValues.entrySet().forEach(eSet->{
                  try {
-                     // todo - Line 57 is not processed ??!
-                     fw.write(eSet.getKey() + CONFIGFILE_KEYVALUE_SEPERATOR + eSet.getValue());
+                     fw.write(eSet.getKey() + CONFIGFILE_KEYVALUE_SEPERATOR + eSet.getValue() + "\n");
                  } catch (IOException e) {
                      throw new RuntimeException(e);
                  }
              });
          }
 
+    }
+
+
+    public Integer size(){
+        return allKV.size();
     }
 
 
