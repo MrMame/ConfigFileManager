@@ -1,6 +1,6 @@
 package de.mme.cfm.configurations;
 
-import de.mme.cfm.ConfigurationEntry;
+import de.mme.cfm.data.ConfigurationEntry;
 
 import java.util.HashMap;
 import java.util.Map;
