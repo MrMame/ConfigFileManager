@@ -47,6 +47,7 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public Configuration removeEntry(String name) {
         if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
-        return null;
+        _conEntries.remove(name);
+        return this;
     }
 }
