@@ -38,6 +38,8 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public Configuration setEntry(ConfigurationEntry entry) {
         if(entry==null)throw new IllegalArgumentException("Entry can not be null");
+        if(entry.getName()==null || entry.getName().isEmpty())throw new IllegalArgumentException("Name of ConfigurationEntry cannot be empty or null");
+        if(entry.getValue()==null) entry.setValue("");
         _conEntries.put(entry.getName(),entry);
         return this;
     }
