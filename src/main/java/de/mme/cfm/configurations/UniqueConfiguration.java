@@ -21,7 +21,7 @@ public class UniqueConfiguration implements Configuration{
 
     @Override
     public Configuration setEntry(String name, String value) {
-        if(name.isEmpty() || name==null)throw new IllegalArgumentException("Name cannot be empty or null");
+        if( name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
         if(value==null)value ="";
 
         if(_conEntries.containsKey(name)){
@@ -44,7 +44,7 @@ public class UniqueConfiguration implements Configuration{
 
     @Override
     public Configuration removeEntry(String name) {
-        if(name.isEmpty() || name==null)throw new IllegalArgumentException("Name cannot be empty or null");
+        if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
         return null;
     }
 }
