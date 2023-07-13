@@ -14,10 +14,6 @@ public class ConfigurationEntry implements Serializable{
         return value;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setValue(String value) {
-        this.value = value;
-    }
+    public ConfigurationEntry setName(String name) {this.name = name;return this;}
+    public ConfigurationEntry setValue(String value) {this.value = value;return this;}
 }
