@@ -11,6 +11,10 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * OBSOLETE - WILL BE REMOVED AT THE END OF v.0.3.0
+ */
+
 public class ConfigFileManager {
 
     private static final String CONFIGFILE_COMMENTS_CHAR = "#";

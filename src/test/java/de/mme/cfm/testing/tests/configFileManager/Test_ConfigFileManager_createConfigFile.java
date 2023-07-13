@@ -13,6 +13,10 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * OBSOLETE - WILL BE REMOVED AT THE END OF v.0.3.0
+ */
+
 public class Test_ConfigFileManager_createConfigFile {
 
     @Test
