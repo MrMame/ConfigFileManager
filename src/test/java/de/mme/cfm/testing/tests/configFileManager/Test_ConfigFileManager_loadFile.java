@@ -242,13 +242,13 @@ public class Test_ConfigFileManager_loadFile {
         String testfilenameA = ":::AinvalidFilename.txt:::";
 
         //ACT
-        InvalidPathException thrown = Assertions.assertThrows(InvalidPathException.class, () -> {
+        InvalidPathException thrown = assertThrows(InvalidPathException.class, () -> {
             //Code under test
             ConfigFileManager cfm = new ConfigFileManager();
             cfm.loadFile(testfilenameA);
         });
         // Assert
-        Assertions.assertEquals("Illegal char <:> at index 0: "+ testfilenameA , thrown.getMessage());
+        assertEquals("Illegal char <:> at index 0: "+ testfilenameA , thrown.getMessage());
     }
 
     @Test
@@ -258,13 +258,13 @@ public class Test_ConfigFileManager_loadFile {
         String testfilenameA = "notExistingMyFriend.txt";
 
         //ACT
-        FileNotFoundException thrown = Assertions.assertThrows(FileNotFoundException.class, () -> {
+        FileNotFoundException thrown = assertThrows(FileNotFoundException.class, () -> {
             //Code under test
             ConfigFileManager cfm = new ConfigFileManager();
             cfm.loadFile(testfilenameA);
         });
         // Assert
-        Assertions.assertEquals("Config file not found " + testfilenameA, thrown.getMessage());
+        assertEquals("Config file not found " + testfilenameA, thrown.getMessage());
     }
 
 

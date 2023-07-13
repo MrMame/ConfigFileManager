@@ -1,4 +1,4 @@
-package de.mme.cfm.testing.tests.UniqueConfiguration;
+package de.mme.cfm.testing.tests.uniqueConfiguration;
 
 import de.mme.cfm.ConfigurationEntry;
 import de.mme.cfm.configurations.Configuration;

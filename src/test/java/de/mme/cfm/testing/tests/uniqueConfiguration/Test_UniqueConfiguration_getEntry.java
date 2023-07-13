@@ -1,12 +1,9 @@
-package de.mme.cfm.testing.tests.UniqueConfiguration;
+package de.mme.cfm.testing.tests.uniqueConfiguration;
 
-import de.mme.cfm.ConfigFileManager;
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.nio.file.InvalidPathException;
 
 public class Test_UniqueConfiguration_getEntry {
 

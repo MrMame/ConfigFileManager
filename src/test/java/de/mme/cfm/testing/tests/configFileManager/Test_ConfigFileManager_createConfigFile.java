@@ -2,6 +2,7 @@ package de.mme.cfm.testing.tests.configFileManager;
 
 import de.mme.cfm.ConfigFileManager;
 import de.mme.cfm.testing.utils.ConfigFiles;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class Test_ConfigFileManager_createConfigFile {
         try {
             cfm.createConfigFile(testfilename,kvValues);
         } catch (IOException e) {
-            fail("Test was not able to create testfile !");
+            Assertions.fail("Test was not able to create testfile !");
         }
 
 
@@ -41,7 +42,7 @@ public class Test_ConfigFileManager_createConfigFile {
         try {
             tcfm.loadFile(testfilename);
         } catch (IOException e) {
-            fail("Error while loading config file with filemanager \n" + e.toString());
+            Assertions.fail("Error while loading config file with filemanager \n" + e.toString());
         }
         boolean isKvMatching;
         isKvMatching = kvValues.entrySet().stream().allMatch(entry->
@@ -50,7 +51,7 @@ public class Test_ConfigFileManager_createConfigFile {
             String entryValue = entry.getValue();
             return fileValue.equals(entryValue);
         });
-        assertEquals(true,isKvMatching);
+        Assertions.assertEquals(true,isKvMatching);
 
 
         // Remove Testfile
@@ -71,7 +72,7 @@ public class Test_ConfigFileManager_createConfigFile {
         try {
             cfm.createConfigFile(testfilename,kvValues);
         } catch (IOException e) {
-            fail("Test was not able to create testfile !");
+            Assertions.fail("Test was not able to create testfile !");
         }
 
         // Read Config file an get  values
@@ -79,13 +80,13 @@ public class Test_ConfigFileManager_createConfigFile {
         try {
             tcfm.loadFile(testfilename);
         } catch (IOException e) {
-            fail("Error while loading config file with filemanager \n" + e.toString());
+            Assertions.fail("Error while loading config file with filemanager \n" + e.toString());
         }
 
 
         // ASSERT
         Integer fileEntryCount = tcfm.size();
-        assertEquals(0,fileEntryCount);
+        Assertions.assertEquals(0,fileEntryCount);
 
 
         // Remove Testfile
