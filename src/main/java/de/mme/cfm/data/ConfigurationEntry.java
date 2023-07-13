@@ -1,4 +1,4 @@
-package de.mme.cfm;
+package de.mme.cfm.data;
 
 import java.io.Serializable;
 
