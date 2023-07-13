@@ -12,6 +12,9 @@ import java.nio.file.InvalidPathException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * OBSOLETE - WILL BE REMOVED AT THE END OF v.0.3.0
+ */
 public class Test_ConfigFileManager_loadFile {
 
     @Test
