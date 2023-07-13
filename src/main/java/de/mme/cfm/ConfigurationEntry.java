@@ -7,9 +7,7 @@ public class ConfigurationEntry implements Serializable{
     private String name;
     private String value;
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
     public String getValue() {
         return value;
     }
