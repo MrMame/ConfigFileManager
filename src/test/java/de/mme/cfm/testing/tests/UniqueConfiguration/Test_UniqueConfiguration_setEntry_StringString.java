@@ -60,7 +60,10 @@ public class Test_UniqueConfiguration_setEntry_StringString {
         testUnit.setEntry("MySetting2","MyValue2");
 
         //ACT
-        String storedValue = testUnit.setEntry(name , nullValue).getEntry(name).getValue();
+        String storedValue = testUnit
+                                .setEntry(name , nullValue)
+                                .getEntry(name)
+                                .getValue();
 
         // Assert
         Assertions.assertEquals("", storedValue);
@@ -80,7 +83,10 @@ public class Test_UniqueConfiguration_setEntry_StringString {
         testUnit.setEntry("MySetting3","MyValue3");
 
         //ACT
-        String storedValue = testUnit.setEntry(name , nullValue).getEntry(name).getValue();
+        String storedValue = testUnit
+                                .setEntry(name , nullValue)
+                                .getEntry(name)
+                                .getValue();
 
         // Assert
         Assertions.assertEquals("", storedValue);
@@ -100,7 +106,10 @@ public class Test_UniqueConfiguration_setEntry_StringString {
         testUnit.setEntry("MySetting3","MyValue3");
 
         //ACT
-        String storedValue = testUnit.setEntry(name , newValue).getEntry(name).getValue();
+        String storedValue = testUnit
+                                .setEntry(name , newValue)
+                                .getEntry(name)
+                                .getValue();
 
         // Assert
         Assertions.assertEquals(newValue, storedValue);
@@ -118,7 +127,10 @@ public class Test_UniqueConfiguration_setEntry_StringString {
         testUnit.setEntry("MySetting2","MyValue2");
 
         //ACT
-        String storedValue = testUnit.setEntry(name , value).getEntry(name).getValue();
+        String storedValue = testUnit
+                                .setEntry(name , value)
+                                .getEntry(name)
+                                .getValue();
 
         // Assert
         Assertions.assertEquals(value, storedValue);
