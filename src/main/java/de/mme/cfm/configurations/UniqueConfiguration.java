@@ -15,7 +15,7 @@ public class UniqueConfiguration implements Configuration{
 
     @Override
     public ConfigurationEntry getEntry(String name) {
-        if(name.isEmpty() || name==null)throw new IllegalArgumentException("Name cannot be empty or null");
+        if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
         return _conEntries.get(name);
     }
 
