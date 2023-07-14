@@ -54,7 +54,12 @@ public class UniqueConfiguration implements Configuration{
         if(entry==null)throw new IllegalArgumentException("Entry can not be null");
         if(entry.getName()==null || entry.getName().isEmpty())throw new IllegalArgumentException("Name of ConfigurationEntry cannot be empty or null");
         if(entry.getValue()==null) entry.setValue("");
-        _conEntries.put(entry.getName(),entry);
+        // Stores a copy of ConfigurationEntry, so it cannot be changed from outside this class by its original reference.
+        ConfigurationEntry newEntryCopy = new ConfigurationEntry();
+        newEntryCopy
+                .setName(entry.getName())
+                .setValue(entry.getValue());
+        _conEntries.put(entry.getName(),newEntryCopy);
         return this;
     }
 
