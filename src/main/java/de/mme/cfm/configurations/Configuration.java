@@ -2,9 +2,11 @@ package de.mme.cfm.configurations;
 
 import de.mme.cfm.data.ConfigurationEntry;
 
+import java.util.Map;
+
 public interface Configuration {
     /**
-     * Returns ConfigurationEntry that matches name-key.
+     * Returns Copy of the ConfigurationEntry that matches name-key.
      * @param name Name of Configuration Entry to return.
      * @return ConfigurationEntry Object that matches key-name.
      *          If no match was found, null will be returned.
@@ -46,5 +48,9 @@ public interface Configuration {
      */
     int getNumberOfEntries();
 
-
+    /**
+     * Return a Copy of the ConfigurationEntry-Map
+     * @return Maps Key is ConfigurationEntry-Name, Map Value is ConfigurationEntry
+     */
+    Map<String,ConfigurationEntry> getEntries();
 }
