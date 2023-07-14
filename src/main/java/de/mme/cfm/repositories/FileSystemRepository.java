@@ -4,25 +4,23 @@ import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
 import de.mme.cfm.data.ConfigurationEntry;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 
 public class FileSystemRepository implements ConfigurationRepository{
 
-    private static final String CONFIGURATIONENTRY_SPEARATOR = "=";
+    private static final String CONFIGENTRY_SEPARATOR = "=";
 
-    private Path targetFile;
+    private Path targetFilePath;
 
 
 
     public FileSystemRepository(Path targetFile) {
         if(targetFile==null)throw new IllegalArgumentException("Targetfile cannot be empty or null ");
-        this.targetFile = targetFile;
+        this.targetFilePath = targetFile;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class FileSystemRepository implements ConfigurationRepository{
         Configuration retConfig;
         
         try{
-            retConfig = loadConfigurationFromFile(targetFile);
+            retConfig = loadConfigurationFromFile(targetFilePath);
         } catch (FileNotFoundException e) {
             throw new ConfigurationLoadException("Targetfile is not existing!",e);
         } catch (IOException e) {
@@ -43,10 +41,42 @@ public class FileSystemRepository implements ConfigurationRepository{
 
 
     @Override
-    public void save(Configuration config) {
+    public void save(Configuration config) throws ConfigurationSaveException{
+        if(config==null)throw new IllegalArgumentException("Config may not be NULL!");
 
+        String fileContent = createFileContent(config);
+        writeToFile(this.targetFilePath,fileContent);
     }
 
+    /**
+     * Write Stringcontent to TargetFile
+     * @param targetFilePath - targetFile to write into
+     * @param content   - Content to write
+     * @throws ConfigurationSaveException - IO Error while writing to targetFile
+     */
+    private void writeToFile(Path targetFilePath,String content) throws ConfigurationSaveException{
+        try(BufferedWriter bw = Files.newBufferedWriter(targetFilePath, Charset.defaultCharset())){
+            bw.write(content);
+        } catch (IOException e) {
+            throw new ConfigurationSaveException("IO Error while trying to write content to targetfile!", e);
+        }
+    }
+
+    /**
+     * Creates a string from Configuration for file storage
+     * @param config - ConfigurationObject to create string from
+     * @return String containing the ConfigurationEntries for storage
+     */
+    private String createFileContent(Configuration config){
+        // Create File Content
+        StringBuilder fileContent= new StringBuilder();
+        config.getEntries().forEach((configurationName,configurationEntry)->{
+            String lineToWrite
+                    = configurationEntry.getName() + CONFIGENTRY_SEPARATOR + configurationEntry.getValue() + "\n";
+            fileContent.append(lineToWrite);
+        });
+        return fileContent.toString();
+    }
 
     /**
      * Read the File line by line to load the Configuration data.
@@ -73,12 +103,12 @@ public class FileSystemRepository implements ConfigurationRepository{
     }
 
     /**
-     * Crates a ConfiurationEntry Object from line String
+     * Creates a ConfigurationEntry Object from line String
      * @param line  - String containing the ConfigurationEntry Data
      * @return ConfigurationEntry
      */
     private ConfigurationEntry createConfigurationEntry(String line) {
-        String[] confLineEl = line.split(CONFIGURATIONENTRY_SPEARATOR);
+        String[] confLineEl = line.split(CONFIGENTRY_SEPARATOR);
         ConfigurationEntry ce = new ConfigurationEntry().setName(confLineEl[0]).setValue(confLineEl[1]);
         return ce;
     }
@@ -112,7 +142,7 @@ public class FileSystemRepository implements ConfigurationRepository{
     private boolean isLineValidConfigurationEntry(String line) {
         boolean isValid=false;
 
-        int separatorIdx = line.trim().indexOf(CONFIGURATIONENTRY_SPEARATOR);
+        int separatorIdx = line.trim().indexOf(CONFIGENTRY_SEPARATOR);
         if(separatorIdx >0) isValid = true;
 
         return isValid;
