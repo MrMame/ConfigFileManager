@@ -9,8 +9,9 @@ public interface ConfigurationRepository {
     /**
      * Load the configuration from the Repository
      * @return Configuration-Object
+     * @throws ConfigurationLoadException - Error while loading Configuration from repository.
      */
-    Configuration load();
+    Configuration load() throws ConfigurationLoadException;
 
     /**
      * Saves the Configuration Object into the Repository
