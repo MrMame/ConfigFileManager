@@ -155,5 +155,4 @@ public class FileSystemRepository implements ConfigurationRepository{
 
         return isValid;
     }
-
 }
