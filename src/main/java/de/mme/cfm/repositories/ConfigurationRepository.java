@@ -16,6 +16,7 @@ public interface ConfigurationRepository {
     /**
      * Saves the Configuration Object into the Repository
      * @param config Configuration-Object to save
+     * @throws ConfigurationSaveException - If Configuration could not be saved
      */
-    void save(Configuration config);
+    void save(Configuration config) throws ConfigurationSaveException;
 }
