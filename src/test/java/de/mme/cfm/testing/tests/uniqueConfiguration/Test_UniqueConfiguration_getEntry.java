@@ -2,6 +2,7 @@ package de.mme.cfm.testing.tests.uniqueConfiguration;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
+import de.mme.cfm.data.ConfigurationEntry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -79,6 +80,26 @@ public class Test_UniqueConfiguration_getEntry {
 
         // Assert
         Assertions.assertEquals(null, testUnit.getEntry(notExistingName));
+    }
+
+
+    @Test
+    void ReturnedEntry_IsOnlyCopyOfOriginalEntry() {
+
+        //Arrange
+        String settingName = "MySetting2";
+
+        ConfigurationEntry originalEntry = new ConfigurationEntry();
+        originalEntry.setName(settingName).setValue("MyValue2");
+
+        Configuration testUnit = new UniqueConfiguration();
+        testUnit.setEntry(originalEntry);
+
+        //ACT
+        boolean isSameEntryObject = (testUnit.getEntry(settingName)==originalEntry);
+
+        // Assert
+        Assertions.assertEquals(false, isSameEntryObject);
     }
 
 }

@@ -2,9 +2,11 @@ package de.mme.cfm.configurations;
 
 import de.mme.cfm.data.ConfigurationEntry;
 
+import java.util.Map;
+
 public interface Configuration {
     /**
-     * Returns ConfigurationEntry that matches name-key.
+     * Returns Copy of the ConfigurationEntry that matches name-key.
      * @param name Name of Configuration Entry to return.
      * @return ConfigurationEntry Object that matches key-name.
      *          If no match was found, null will be returned.
@@ -37,4 +39,18 @@ public interface Configuration {
      * @throws IllegalArgumentException - If name is NULL or Empty.
      */
     Configuration removeEntry(String name);
+
+    /**
+     * Get the number of ConfigurationEntries inside the Configuration.
+     * If the confiuration contains more than Integer.MAX_VALUE entries, returns Integer.MAX_VALUE.
+     *
+     * @return Number of ConfigurationEntries.
+     */
+    int getNumberOfEntries();
+
+    /**
+     * Return a Copy of the ConfigurationEntry-Map
+     * @return Maps Key is ConfigurationEntry-Name, Map Value is ConfigurationEntry
+     */
+    Map<String,ConfigurationEntry> getEntries();
 }

@@ -10,25 +10,33 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Helper class for config file testing.
  */
-public class ConfigFiles {
+public class ConfigFile {
 
+    private String filename;
 
-    static public void CreateConfigFile(String filename,String content){
+    private ConfigFile(String filename,String content){
+        this.filename = filename;
+    }
+
+    public static ConfigFile createConfigFile(String filename,String content){
+        ConfigFile retCf = new ConfigFile(filename,content);
         try (FileWriter fw = new FileWriter(filename)) {
             fw.write(content);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return retCf;
     }
 
-    static public void RemoveFile(String filename){
+    public void RemoveFile(){
+        if(this.filename==null || this.filename.isEmpty())return;
         // Remove Testfile
         try {
-            Files.deleteIfExists(Paths.get(filename));
+            Files.deleteIfExists(Paths.get(this.filename));
         } catch (IOException e) {
             fail("Couldn't delete testfile. Really weird! \n" + e.toString());
         }
     }
-
 
 }
