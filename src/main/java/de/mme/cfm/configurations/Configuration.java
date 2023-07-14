@@ -37,4 +37,14 @@ public interface Configuration {
      * @throws IllegalArgumentException - If name is NULL or Empty.
      */
     Configuration removeEntry(String name);
+
+    /**
+     * Get the number of ConfigurationEntries inside the Configuration.
+     * If the confiuration contains more than Integer.MAX_VALUE entries, returns Integer.MAX_VALUE.
+     *
+     * @return Number of ConfigurationEntries.
+     */
+    int getNumberOfEntries();
+
+
 }
