@@ -13,6 +13,8 @@ public class UniqueConfiguration implements Configuration{
     private final Map<String,ConfigurationEntry> _conEntries = new HashMap<>();
 
 
+
+
     @Override
     public ConfigurationEntry getEntry(String name) {
         if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
@@ -50,4 +52,10 @@ public class UniqueConfiguration implements Configuration{
         _conEntries.remove(name);
         return this;
     }
+
+    @Override
+    public int getNumberOfEntries(){
+        return _conEntries.size();
+    }
+
 }
