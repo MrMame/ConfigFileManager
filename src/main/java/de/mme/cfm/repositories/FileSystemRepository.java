@@ -18,7 +18,10 @@ public class FileSystemRepository implements ConfigurationRepository{
     private Path targetFilePath;
 
 
-
+    /**
+     * Filesystem Repository for load/save configurations inside files.
+     * @param targetFile - Repository file to load/save configurations
+     */
     public FileSystemRepository(Path targetFile) {
         if(targetFile==null)throw new IllegalArgumentException("Targetfile cannot be empty or null ");
         this.targetFilePath = targetFile;
