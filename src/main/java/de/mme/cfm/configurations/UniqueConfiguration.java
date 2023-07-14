@@ -1,5 +1,6 @@
 package de.mme.cfm.configurations;
 
+import com.sun.source.tree.Tree;
 import de.mme.cfm.data.ConfigurationEntry;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class UniqueConfiguration implements Configuration{
         // If Entry exists, make a copy for returning
         ConfigurationEntry entry = _conEntries.get(name);
         if(entry != null){
+            retEntry = new ConfigurationEntry();
             retEntry
                     .setName(entry.getName())
                     .setValue(entry.getValue());
@@ -71,7 +73,24 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public Map<String, ConfigurationEntry> getEntries() {
         // Return only a copy of this class map
-        return Map.copyOf(_conEntries);
+        return cloneMap(_conEntries);
     }
+
+
+    /**
+     * Creates a new deep Copied Map of the original Map
+     * @param originalMap - Original Map taht will be newly create with new values
+     * @return New cloned Map of the Original.
+     */
+      private Map<String, ConfigurationEntry> cloneMap(Map<String, ConfigurationEntry> originalMap){
+          Map<String, ConfigurationEntry> retMap = new TreeMap<>();
+          for(ConfigurationEntry ce: originalMap.values()){
+              retMap.put(ce.getName(),
+                      new ConfigurationEntry()
+                              .setName(ce.getName())
+                              .setValue(ce.getValue()));
+          }
+          return retMap;
+      }
 
 }
