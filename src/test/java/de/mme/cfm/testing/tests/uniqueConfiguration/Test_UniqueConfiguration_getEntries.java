@@ -20,8 +20,8 @@ public class Test_UniqueConfiguration_getEntries {
         ConfigurationEntry originalEntryB = new ConfigurationEntry();
         ConfigurationEntry originalEntryC = new ConfigurationEntry();
         originalEntryA.setName(settingNameA).setValue("MyValueA");
-        originalEntryB.setName(settingNameA).setValue("MyValueB");
-        originalEntryC.setName(settingNameA).setValue("MyValueC");
+        originalEntryB.setName(settingNameB).setValue("MyValueB");
+        originalEntryC.setName(settingNameC).setValue("MyValueC");
 
         Configuration testUnit = new UniqueConfiguration();
         testUnit
@@ -32,8 +32,8 @@ public class Test_UniqueConfiguration_getEntries {
         //ACT
         boolean areSameConfigurationObjects
                 = ((testUnit.getEntry(settingNameA)==originalEntryA)
-                && (testUnit.getEntry(settingNameB)==originalEntryB)
-                && (testUnit.getEntry(settingNameC)==originalEntryC));
+                || (testUnit.getEntry(settingNameB)==originalEntryB)
+                || (testUnit.getEntry(settingNameC)==originalEntryC));
 
         // Assert
         Assertions.assertEquals(false, areSameConfigurationObjects);
