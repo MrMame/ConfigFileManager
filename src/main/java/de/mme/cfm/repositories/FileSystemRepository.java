@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 
 
 public class FileSystemRepository implements ConfigurationRepository{
@@ -48,6 +49,8 @@ public class FileSystemRepository implements ConfigurationRepository{
         writeToFile(this.targetFilePath,fileContent);
     }
 
+
+
     /**
      * Write Stringcontent to TargetFile
      * @param targetFilePath - targetFile to write into
@@ -70,11 +73,13 @@ public class FileSystemRepository implements ConfigurationRepository{
     private String createFileContent(Configuration config){
         // Create File Content
         StringBuilder fileContent= new StringBuilder();
-        config.getEntries().forEach((configurationName,configurationEntry)->{
+
+        for(Map.Entry<String,ConfigurationEntry>  me: config.getEntries().entrySet()){
+            ConfigurationEntry ce = me.getValue();
             String lineToWrite
-                    = configurationEntry.getName() + CONFIGENTRY_SEPARATOR + configurationEntry.getValue() + "\n";
+                    = ce.getName() + CONFIGENTRY_SEPARATOR + ce.getValue() + "\n";
             fileContent.append(lineToWrite);
-        });
+        }
         return fileContent.toString();
     }
 
