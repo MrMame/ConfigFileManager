@@ -4,13 +4,14 @@ import de.mme.cfm.data.ConfigurationEntry;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Unique Configuration. No ConfigurationEntries with duplicate names are allowed
  */
 public class UniqueConfiguration implements Configuration{
 
-    private final Map<String,ConfigurationEntry> _conEntries = new HashMap<>();
+    private final Map<String,ConfigurationEntry> _conEntries = new TreeMap<>();
 
 
 
@@ -18,7 +19,16 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public ConfigurationEntry getEntry(String name) {
         if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
-        return _conEntries.get(name);
+
+        ConfigurationEntry retEntry=null;
+        // If Entry exists, make a copy for returning
+        ConfigurationEntry entry = _conEntries.get(name);
+        if(entry != null){
+            retEntry
+                    .setName(entry.getName())
+                    .setValue(entry.getValue());
+        }
+        return retEntry;
     }
 
     @Override
@@ -56,6 +66,12 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public int getNumberOfEntries(){
         return _conEntries.size();
+    }
+
+    @Override
+    public Map<String, ConfigurationEntry> getEntries() {
+        // Return only a copy of this class map
+        return Map.copyOf(_conEntries);
     }
 
 }
