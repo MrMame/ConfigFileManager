@@ -21,12 +21,7 @@ public class ConfigurationEntries {
      */
     public static ConfigurationEntry deepClone(ConfigurationEntry entry){
         if(entry==null )throw new IllegalArgumentException("Entry may not be NULL!");
-
-        ConfigurationEntry retCe = new ConfigurationEntry();
-        retCe
-                .setName(entry.getName())
-                .setValue(entry.getValue());
-
+        ConfigurationEntry retCe = ConfigurationEntries.of(entry.getName(),entry.getValue());
         return retCe;
     }
 

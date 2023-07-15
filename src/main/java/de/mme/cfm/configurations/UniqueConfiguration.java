@@ -26,10 +26,9 @@ public class UniqueConfiguration implements Configuration{
         // If Entry exists, make a copy for returning
         ConfigurationEntry entry = _conEntries.get(name);
         if(entry != null){
-            retEntry = new ConfigurationEntry();
-            retEntry
-                    .setName(entry.getName())
-                    .setValue(entry.getValue());
+            retEntry = ConfigurationEntries.of(
+                    entry.getName(),
+                    entry.getValue());
         }
         return retEntry;
     }
@@ -44,7 +43,7 @@ public class UniqueConfiguration implements Configuration{
             _conEntries.get(name).setValue(value);}
         else{
             // Key is not existing, create new configurationEntry
-            ConfigurationEntry newConf = new ConfigurationEntry().setName(name).setValue(value);
+            ConfigurationEntry newConf = ConfigurationEntries.of(name,value);
             _conEntries.put(name,newConf);
         }
         return this;
@@ -56,11 +55,8 @@ public class UniqueConfiguration implements Configuration{
         if(entry.getName()==null || entry.getName().isEmpty())throw new IllegalArgumentException("Name of ConfigurationEntry cannot be empty or null");
         if(entry.getValue()==null) entry.setValue("");
         // Stores a copy of ConfigurationEntry, so it cannot be changed from outside this class by its original reference.
-        ConfigurationEntry newEntryCopy = new ConfigurationEntry();
-        newEntryCopy
-                .setName(entry.getName())
-                .setValue(entry.getValue());
-        _conEntries.put(entry.getName(),newEntryCopy);
+        ConfigurationEntry newEntryClone = ConfigurationEntries.deepClone(entry);
+        _conEntries.put(entry.getName(),newEntryClone);
         return this;
     }
 

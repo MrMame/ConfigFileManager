@@ -2,6 +2,7 @@ package de.mme.cfm.repositories;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
+import de.mme.cfm.data.ConfigurationEntries;
 import de.mme.cfm.data.ConfigurationEntry;
 
 import java.io.*;
@@ -117,7 +118,7 @@ public class FileSystemRepository implements ConfigurationRepository{
      */
     private ConfigurationEntry createConfigurationEntry(String line) {
         String[] confLineEl = line.split(CONFIGENTRY_SEPARATOR);
-        ConfigurationEntry ce = new ConfigurationEntry().setName(confLineEl[0]).setValue(confLineEl[1]);
+        ConfigurationEntry ce = ConfigurationEntries.of(confLineEl[0],confLineEl[1]);
         return ce;
     }
 
