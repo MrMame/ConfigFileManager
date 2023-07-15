@@ -2,7 +2,10 @@ package de.mme.cfm.repositories;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntries;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
+import de.mme.cfm.repositories.exceptions.ConfigurationLoadException;
+import de.mme.cfm.repositories.exceptions.ConfigurationSaveException;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -11,9 +14,9 @@ import java.nio.file.Path;
 import java.util.Map;
 
 
-public class FileSystemRepository implements ConfigurationRepository{
+public class TextFileRepository implements ConfigurationRepository{
 
-    private static final String CONFIGENTRY_SEPARATOR = "=";
+    private static final String CONFIG_ENTRY_SEPARATOR = "=";
 
     private Path targetFilePath;
 
@@ -22,7 +25,7 @@ public class FileSystemRepository implements ConfigurationRepository{
      * Filesystem Repository for load/save configurations inside files.
      * @param targetFile - Repository file to load/save configurations
      */
-    public FileSystemRepository(Path targetFile) {
+    public TextFileRepository(Path targetFile) {
         if(targetFile==null)throw new IllegalArgumentException("Targetfile cannot be empty or null ");
         this.targetFilePath = targetFile;
     }
@@ -45,7 +48,7 @@ public class FileSystemRepository implements ConfigurationRepository{
 
 
     @Override
-    public void save(Configuration config) throws ConfigurationSaveException{
+    public void save(Configuration config) throws ConfigurationSaveException {
         if(config==null)throw new IllegalArgumentException("Config may not be NULL!");
 
         String fileContent = createFileContent(config);
@@ -80,7 +83,7 @@ public class FileSystemRepository implements ConfigurationRepository{
         for(Map.Entry<String,ConfigurationEntry>  me: config.getEntries().entrySet()){
             ConfigurationEntry ce = me.getValue();
             String lineToWrite
-                    = ce.getName() + CONFIGENTRY_SEPARATOR + ce.getValue() + "\n";
+                    = ce.getName() + CONFIG_ENTRY_SEPARATOR + ce.getValue() + "\n";
             fileContent.append(lineToWrite);
         }
         return fileContent.toString();
@@ -116,8 +119,8 @@ public class FileSystemRepository implements ConfigurationRepository{
      * @return ConfigurationEntry
      */
     private ConfigurationEntry createConfigurationEntry(String line) {
-        String[] confLineEl = line.split(CONFIGENTRY_SEPARATOR);
-        ConfigurationEntry ce = new ConfigurationEntry().setName(confLineEl[0]).setValue(confLineEl[1]);
+        String[] confLineEl = line.split(CONFIG_ENTRY_SEPARATOR);
+        ConfigurationEntry ce = ConfigurationEntries.of(confLineEl[0],confLineEl[1]);
         return ce;
     }
 
@@ -150,7 +153,7 @@ public class FileSystemRepository implements ConfigurationRepository{
     private boolean isLineValidConfigurationEntry(String line) {
         boolean isValid=false;
 
-        int separatorIdx = line.trim().indexOf(CONFIGENTRY_SEPARATOR);
+        int separatorIdx = line.trim().indexOf(CONFIG_ENTRY_SEPARATOR);
         if(separatorIdx >0) isValid = true;
 
         return isValid;

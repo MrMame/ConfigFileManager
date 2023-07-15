@@ -1,9 +1,8 @@
 package de.mme.cfm.configurations;
 
-import com.sun.source.tree.Tree;
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntries;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -20,17 +19,9 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public ConfigurationEntry getEntry(String name) {
         if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
-
-        ConfigurationEntry retEntry=null;
         // If Entry exists, make a copy for returning
         ConfigurationEntry entry = _conEntries.get(name);
-        if(entry != null){
-            retEntry = new ConfigurationEntry();
-            retEntry
-                    .setName(entry.getName())
-                    .setValue(entry.getValue());
-        }
-        return retEntry;
+        return ConfigurationEntries.deepClone(entry);
     }
 
     @Override
@@ -43,7 +34,7 @@ public class UniqueConfiguration implements Configuration{
             _conEntries.get(name).setValue(value);}
         else{
             // Key is not existing, create new configurationEntry
-            ConfigurationEntry newConf = new ConfigurationEntry().setName(name).setValue(value);
+            ConfigurationEntry newConf = ConfigurationEntries.of(name,value);
             _conEntries.put(name,newConf);
         }
         return this;
@@ -55,11 +46,8 @@ public class UniqueConfiguration implements Configuration{
         if(entry.getName()==null || entry.getName().isEmpty())throw new IllegalArgumentException("Name of ConfigurationEntry cannot be empty or null");
         if(entry.getValue()==null) entry.setValue("");
         // Stores a copy of ConfigurationEntry, so it cannot be changed from outside this class by its original reference.
-        ConfigurationEntry newEntryCopy = new ConfigurationEntry();
-        newEntryCopy
-                .setName(entry.getName())
-                .setValue(entry.getValue());
-        _conEntries.put(entry.getName(),newEntryCopy);
+        ConfigurationEntry newEntryClone = ConfigurationEntries.deepClone(entry);
+        _conEntries.put(newEntryClone.getName(),newEntryClone);
         return this;
     }
 
@@ -84,16 +72,17 @@ public class UniqueConfiguration implements Configuration{
 
     /**
      * Creates a new deep Copied Map of the original Map
-     * @param originalMap - Original Map taht will be newly create with new values
+     * @param originalMap - Original Map that will be newly create with new values
      * @return New cloned Map of the Original.
      */
       private Map<String, ConfigurationEntry> cloneMap(Map<String, ConfigurationEntry> originalMap){
           Map<String, ConfigurationEntry> retMap = new TreeMap<>();
+
           for(ConfigurationEntry ce: originalMap.values()){
-              retMap.put(ce.getName(),
-                      new ConfigurationEntry()
-                              .setName(ce.getName())
-                              .setValue(ce.getValue()));
+              ConfigurationEntry clonedEntry = ConfigurationEntries.deepClone(ce);
+              retMap.put(
+                      clonedEntry.getName(),
+                      clonedEntry);
           }
           return retMap;
       }

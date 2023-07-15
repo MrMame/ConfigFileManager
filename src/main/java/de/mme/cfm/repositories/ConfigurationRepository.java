@@ -1,6 +1,8 @@
 package de.mme.cfm.repositories;
 
 import de.mme.cfm.configurations.Configuration;
+import de.mme.cfm.repositories.exceptions.ConfigurationLoadException;
+import de.mme.cfm.repositories.exceptions.ConfigurationSaveException;
 
 /**
  * Repository to load and save Configuration-Objects

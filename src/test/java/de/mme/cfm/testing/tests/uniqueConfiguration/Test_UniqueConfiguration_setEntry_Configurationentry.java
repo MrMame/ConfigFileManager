@@ -1,6 +1,6 @@
 package de.mme.cfm.testing.tests.uniqueConfiguration;
 
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
 import org.junit.jupiter.api.Assertions;
