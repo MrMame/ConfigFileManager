@@ -20,7 +20,7 @@ public class ConfigurationEntries {
      * @return A Cloned ConfigurationEntry Object of entry
      */
     public static ConfigurationEntry deepClone(ConfigurationEntry entry){
-        if(entry==null )throw new IllegalArgumentException("Entry may not be NULL!");
+        if(entry==null )return null;
         ConfigurationEntry retCe = ConfigurationEntries.of(entry.getName(),entry.getValue());
         return retCe;
     }
