@@ -1,7 +1,7 @@
 package de.mme.cfm.testing.tests.textFileRepository;
 
 import de.mme.cfm.configurations.Configuration;
-import de.mme.cfm.repositories.ConfigurationLoadException;
+import de.mme.cfm.repositories.exceptions.ConfigurationLoadException;
 import de.mme.cfm.repositories.ConfigurationRepository;
 import de.mme.cfm.repositories.TextFileRepository;
 import de.mme.cfm.testing.utils.ConfigFile;

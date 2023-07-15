@@ -4,6 +4,8 @@ import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
 import de.mme.cfm.configurations.data.ConfigurationEntries;
 import de.mme.cfm.configurations.data.ConfigurationEntry;
+import de.mme.cfm.repositories.exceptions.ConfigurationLoadException;
+import de.mme.cfm.repositories.exceptions.ConfigurationSaveException;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -46,7 +48,7 @@ public class TextFileRepository implements ConfigurationRepository{
 
 
     @Override
-    public void save(Configuration config) throws ConfigurationSaveException{
+    public void save(Configuration config) throws ConfigurationSaveException {
         if(config==null)throw new IllegalArgumentException("Config may not be NULL!");
 
         String fileContent = createFileContent(config);
