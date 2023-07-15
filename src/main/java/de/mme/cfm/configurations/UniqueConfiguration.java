@@ -21,16 +21,9 @@ public class UniqueConfiguration implements Configuration{
     @Override
     public ConfigurationEntry getEntry(String name) {
         if(name==null || name.isEmpty())throw new IllegalArgumentException("Name cannot be empty or null");
-
-        ConfigurationEntry retEntry=null;
         // If Entry exists, make a copy for returning
         ConfigurationEntry entry = _conEntries.get(name);
-        if(entry != null){
-            retEntry = ConfigurationEntries.of(
-                    entry.getName(),
-                    entry.getValue());
-        }
-        return retEntry;
+        return ConfigurationEntries.deepClone(entry);
     }
 
     @Override
@@ -56,7 +49,7 @@ public class UniqueConfiguration implements Configuration{
         if(entry.getValue()==null) entry.setValue("");
         // Stores a copy of ConfigurationEntry, so it cannot be changed from outside this class by its original reference.
         ConfigurationEntry newEntryClone = ConfigurationEntries.deepClone(entry);
-        _conEntries.put(entry.getName(),newEntryClone);
+        _conEntries.put(newEntryClone.getName(),newEntryClone);
         return this;
     }
 
@@ -88,10 +81,9 @@ public class UniqueConfiguration implements Configuration{
           Map<String, ConfigurationEntry> retMap = new TreeMap<>();
 
           for(ConfigurationEntry ce: originalMap.values()){
-              String configurationEntryKey = ce.getName();
               ConfigurationEntry clonedEntry = ConfigurationEntries.deepClone(ce);
               retMap.put(
-                      configurationEntryKey,
+                      clonedEntry.getName(),
                       clonedEntry);
           }
           return retMap;
