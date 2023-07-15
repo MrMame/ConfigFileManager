@@ -1,4 +1,4 @@
-package de.mme.cfm.repositories;
+package de.mme.cfm.repositories.exceptions;
 
 public class ConfigurationSaveException extends RuntimeException{
     public ConfigurationSaveException() {
