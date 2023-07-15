@@ -10,16 +10,15 @@ import java.io.ObjectInputFilter;
 public class Test_configurationEntries_deepClone {
 
     @Test
-    void IfEntryIsNull_throwsIllegalArgumentException(){
+    void IfEntryIsNull_ReturnsNull(){
         //ARRANGE
        ConfigurationEntry nullConfigEntry = null;
         //ACT
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            //Code under test
-            ConfigurationEntries.deepClone(nullConfigEntry);
-        });
+
+            ConfigurationEntry clonedEntry = ConfigurationEntries.deepClone(nullConfigEntry);
+
         //ASSERT
-        Assertions.assertEquals("Entry may not be NULL!", thrown.getMessage());
+        Assertions.assertEquals(null, clonedEntry);
     }
 
     @Test
