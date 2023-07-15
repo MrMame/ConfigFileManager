@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 
-public class FileSystemRepository implements ConfigurationRepository{
+public class TextFileRepository implements ConfigurationRepository{
 
     private static final String CONFIGENTRY_SEPARATOR = "=";
 
@@ -23,7 +23,7 @@ public class FileSystemRepository implements ConfigurationRepository{
      * Filesystem Repository for load/save configurations inside files.
      * @param targetFile - Repository file to load/save configurations
      */
-    public FileSystemRepository(Path targetFile) {
+    public TextFileRepository(Path targetFile) {
         if(targetFile==null)throw new IllegalArgumentException("Targetfile cannot be empty or null ");
         this.targetFilePath = targetFile;
     }

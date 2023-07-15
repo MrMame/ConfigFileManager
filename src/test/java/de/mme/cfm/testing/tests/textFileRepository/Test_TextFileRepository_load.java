@@ -1,9 +1,9 @@
-package de.mme.cfm.testing.tests.fileSystemRepository;
+package de.mme.cfm.testing.tests.textFileRepository;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.repositories.ConfigurationLoadException;
 import de.mme.cfm.repositories.ConfigurationRepository;
-import de.mme.cfm.repositories.FileSystemRepository;
+import de.mme.cfm.repositories.TextFileRepository;
 import de.mme.cfm.testing.utils.ConfigFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Test_FileSystemRepository_load {
+public class Test_TextFileRepository_load {
 
     @Test
     void IfTargetFileNOTExists_ThrowsConfigurationLoadException() {
@@ -22,7 +22,7 @@ public class Test_FileSystemRepository_load {
         //ACT
         ConfigurationLoadException thrown = Assertions.assertThrows(ConfigurationLoadException.class, () -> {
             //Code under test
-            ConfigurationRepository cp = new FileSystemRepository(notExistingPath);
+            ConfigurationRepository cp = new TextFileRepository(notExistingPath);
             Configuration config = cp.load();
         });
 
@@ -44,7 +44,7 @@ public class Test_FileSystemRepository_load {
 
         //ACT
         Path testFile = Paths.get(filename);
-        ConfigurationRepository cp = new FileSystemRepository(testFile);
+        ConfigurationRepository cp = new TextFileRepository(testFile);
         Configuration config = cp.load();
 
         boolean isConfigLoaded =
@@ -74,7 +74,7 @@ public class Test_FileSystemRepository_load {
 
         //ACT
         Path testFile = Paths.get(filename);
-        ConfigurationRepository cp = new FileSystemRepository(testFile);
+        ConfigurationRepository cp = new TextFileRepository(testFile);
         Configuration config = cp.load();
 
         boolean isConfigEmpty = (config.getNumberOfEntries() == 0);

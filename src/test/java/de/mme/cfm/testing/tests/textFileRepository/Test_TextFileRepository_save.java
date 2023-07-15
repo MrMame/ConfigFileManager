@@ -1,10 +1,10 @@
-package de.mme.cfm.testing.tests.fileSystemRepository;
+package de.mme.cfm.testing.tests.textFileRepository;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
 import de.mme.cfm.configurations.data.ConfigurationEntry;
 import de.mme.cfm.repositories.ConfigurationRepository;
-import de.mme.cfm.repositories.FileSystemRepository;
+import de.mme.cfm.repositories.TextFileRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Test_FileSystemRepository_save {
+public class Test_TextFileRepository_save {
 
     @Test
     void IfConfigurationIsNull_ThrowsIllegalArgumentException() {
@@ -25,7 +25,7 @@ public class Test_FileSystemRepository_save {
         //ACT
         IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             //Code under test
-            ConfigurationRepository cp = new FileSystemRepository(targetFilePath);
+            ConfigurationRepository cp = new TextFileRepository(targetFilePath);
             cp.save(nullConfiguration);
         });
 
@@ -51,7 +51,7 @@ public class Test_FileSystemRepository_save {
                 .setEntry(entryD);
 
         //ACT
-        FileSystemRepository fsr = new FileSystemRepository(targetFilePath);
+        TextFileRepository fsr = new TextFileRepository(targetFilePath);
         fsr.save(validConfig);
 
         // Assert
