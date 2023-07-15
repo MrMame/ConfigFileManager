@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class TextFileRepository implements ConfigurationRepository{
 
-    private static final String CONFIGENTRY_SEPARATOR = "=";
+    private static final String CONFIG_ENTRY_SEPARATOR = "=";
 
     private Path targetFilePath;
 
@@ -83,7 +83,7 @@ public class TextFileRepository implements ConfigurationRepository{
         for(Map.Entry<String,ConfigurationEntry>  me: config.getEntries().entrySet()){
             ConfigurationEntry ce = me.getValue();
             String lineToWrite
-                    = ce.getName() + CONFIGENTRY_SEPARATOR + ce.getValue() + "\n";
+                    = ce.getName() + CONFIG_ENTRY_SEPARATOR + ce.getValue() + "\n";
             fileContent.append(lineToWrite);
         }
         return fileContent.toString();
@@ -119,7 +119,7 @@ public class TextFileRepository implements ConfigurationRepository{
      * @return ConfigurationEntry
      */
     private ConfigurationEntry createConfigurationEntry(String line) {
-        String[] confLineEl = line.split(CONFIGENTRY_SEPARATOR);
+        String[] confLineEl = line.split(CONFIG_ENTRY_SEPARATOR);
         ConfigurationEntry ce = ConfigurationEntries.of(confLineEl[0],confLineEl[1]);
         return ce;
     }
@@ -153,7 +153,7 @@ public class TextFileRepository implements ConfigurationRepository{
     private boolean isLineValidConfigurationEntry(String line) {
         boolean isValid=false;
 
-        int separatorIdx = line.trim().indexOf(CONFIGENTRY_SEPARATOR);
+        int separatorIdx = line.trim().indexOf(CONFIG_ENTRY_SEPARATOR);
         if(separatorIdx >0) isValid = true;
 
         return isValid;
