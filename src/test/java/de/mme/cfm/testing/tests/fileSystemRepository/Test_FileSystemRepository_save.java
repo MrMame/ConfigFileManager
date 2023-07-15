@@ -2,14 +2,12 @@ package de.mme.cfm.testing.tests.fileSystemRepository;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
-import de.mme.cfm.data.ConfigurationEntry;
-import de.mme.cfm.repositories.ConfigurationLoadException;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 import de.mme.cfm.repositories.ConfigurationRepository;
 import de.mme.cfm.repositories.FileSystemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

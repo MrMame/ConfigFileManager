@@ -1,10 +1,8 @@
 package de.mme.cfm.configurations;
 
-import com.sun.source.tree.Tree;
-import de.mme.cfm.data.ConfigurationEntries;
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntries;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 

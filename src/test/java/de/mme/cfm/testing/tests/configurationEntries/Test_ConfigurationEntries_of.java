@@ -1,7 +1,7 @@
 package de.mme.cfm.testing.tests.configurationEntries;
 
-import de.mme.cfm.data.ConfigurationEntries;
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntries;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

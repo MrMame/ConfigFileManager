@@ -2,8 +2,8 @@ package de.mme.cfm.repositories;
 
 import de.mme.cfm.configurations.Configuration;
 import de.mme.cfm.configurations.UniqueConfiguration;
-import de.mme.cfm.data.ConfigurationEntries;
-import de.mme.cfm.data.ConfigurationEntry;
+import de.mme.cfm.configurations.data.ConfigurationEntries;
+import de.mme.cfm.configurations.data.ConfigurationEntry;
 
 import java.io.*;
 import java.nio.charset.Charset;

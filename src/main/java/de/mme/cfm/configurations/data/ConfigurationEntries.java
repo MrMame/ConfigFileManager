@@ -1,4 +1,4 @@
-package de.mme.cfm.data;
+package de.mme.cfm.configurations.data;
 
 
 public class ConfigurationEntries {
