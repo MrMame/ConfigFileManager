@@ -81,14 +81,14 @@ config.setEntry("MySetting","MyValue");
 config.setEntry("MySetting2","MyValue2");
 
 // Write the Configuration-Object to a repository.
-Repository fsr = new TextFileRepository("configFoler/exampleConfig.cfg");
+ConfigurationRepository fsr = new TextFileRepository(Path.of("exampleConfig.cfg"));
 fsr.save(config);
 ```
 
 ### Load Configuration from textfile
 ``` java
 // Create textfile repository to get access to the configuration textfile
-Repository fsr = new TextFileRepository("configFoler/exampleConfig.cfg");
+ConfigurationRepository fsr = new TextFileRepository(Path.of("exampleConfig.cfg"));
 Configuration config = fsr.load();
 
 // Use some settings
