@@ -6,20 +6,12 @@ Class to Load/Save Configurations from different repositories
 
 # Get Started
 
-### How to install libs to Maven
-
-There are several ways to add a 3rd-Party library to your maven project.
-- Install the lib to your local maven repository **(This will be described below)**
-- Adding dependency as system scope. This Method is official obsolete and should not be used for future projects.
-- Create a different local maven repository and upload ConfigFileManager there. 
-  Then you have to use the other maven-repository if you want to add the ConfigFileManager dependency to your pom.xml file.
-
-### Add dependency to your Maven project
+## Add dependency to your Maven project
 
 You can install the _ConfigFileManager-<versionNumber>.jar_ file to your local Maven repository.
 This way it makes it easy to put it into your projects _pom.xml_ file.
 
-Necessary steps
+
 
 - Install ConfigFileManager to your local Maven repository 
 - Add the ConfigFileManager dependency inside your projects pom.xml file
@@ -92,7 +84,7 @@ System.out.println("Setting Name is " + settingName + " and it's value is " + se
 
 # Building
 
-If you want to build the ConfigfileManager .jar file, it is necessary to use 
+If you want to build the ConfigfileManager _.jar_ file, it is necessary to use 
 mavens `package` lifecycle. It will install a _pom.xml_ file inside the jar's META-INF Folder.
 
 ![METAINF-POM.jpg](docs%2Fimg%2FMETAINF-POM.jpg)
@@ -102,9 +94,9 @@ maven repository as described in the chapter
 **Add ConfigFileManager-jar to your local Maven repository**
 
 
+# Additional Info
 
-
-# TextFileRepository Syntax
+## TextFileRepository Syntax
 
 ```
 # Comment lines start with hash-symbol
