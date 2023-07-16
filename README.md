@@ -2,10 +2,16 @@
 Class to Load/Save Configurations from different repositories
 
 # Features
+
+-----
+
 - Settings are represented by ConfigurationEntry-Objects
 - Class `TextFileRepository` for load/save Configuration-Settings inside a TextFile.
 
 # Get Started
+
+-----
+
 
 ## Add dependency to your Maven project
 
@@ -60,6 +66,9 @@ is listed in external libraries.
 
 ## How to use
 
+-----
+
+
 ### Create Configuration and save as textfile
 The Configuration class handles all settings for you. It will collect all settings.
 A setting has a name and a value and is represented by a ConfigurationEntry object.
@@ -93,6 +102,9 @@ System.out.println("Setting Name is " + settingName + " and it's value is " + se
 
 # Building
 
+-----
+
+
 If you want to build the ConfigfileManager _.jar_ file by yourself, it is necessary to use 
 mavens `package` lifecycle. It will install a _pom.xml_ file inside the jar's _META-INF_ Folder.
 This _pom.xml_ file is necessary for installing the lib to the local
@@ -104,6 +116,9 @@ maven repository as described in the **Get Started** chapter before.
 
 
 # Additional Info
+
+-----
+
 
 ## TextFileRepository Syntax
 
