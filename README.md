@@ -7,6 +7,13 @@ A tiny lib to load/save configurations from different types of repositories.
 - Settings are represented by ConfigurationEntry-Objects
 - Class `TextFileRepository` for load/save Configuration-Settings inside a TextFile.
 
+# Dependenices
+    
+   - Java 17
+   - Junit 5.9.1
+   - Mockito 5.4.0
+
+
 # Get Started
 
 ## Add dependency to your Maven project
